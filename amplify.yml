@@ -5,10 +5,10 @@ frontend:
       commands:
         - yarn global add ulid
         - REVISION=`ulid`
-        - APP_REVISION_ID=$REVISION yarn
+        - yarn
     build:
       commands:
-        - yarn generate
+        - APP_REVISION_ID=$REVISION yarn generate
     postBuild:
       commands:
         - cp -rf static/* dist/

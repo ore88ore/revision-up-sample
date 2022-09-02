@@ -26,14 +26,24 @@ export default Vue.extend({
     appRevisionId(): string {
       return process.env.APP_REVISION_ID ?? ''
     },
+    env():any {
+      return ;
+    }
   },
   async asyncData({ app }) {
+    console.log("env: ", process.env)
     const res = await fetch(
       `${process.env.REVISION_URL}/application/revision.json`
     )
-    const revision = await res.json()
-    return {
-      serverRevision: revision.revision ?? '',
+    try {
+      const revision = await res.json()
+      return {
+        serverRevision: revision.revision ?? '',
+      }
+    } catch (error) {
+      return {
+        serverRevision: '',
+      }
     }
   },
 })
