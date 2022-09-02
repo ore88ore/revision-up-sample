@@ -1,4 +1,8 @@
 export default {
+  env: {
+    REVISION_URL:process.env.REVISION_URL,
+    APP_REVISION_ID: process.env.APP_REVISION_ID,
+  },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
