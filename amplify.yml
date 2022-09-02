@@ -4,15 +4,15 @@ frontend:
     preBuild:
       commands:
         - yarn global add ulid
-        - REVISION=`ulid`
+        - REVISION_ID=`ulid`
         - yarn
     build:
       commands:
-        - APP_REVISION_ID=$REVISION yarn generate
+        - APP_REVISION_ID=$REVISION_ID yarn generate
     postBuild:
       commands:
         - cp -rf static/* dist/
-        - printf '{"revision":"%s"}' $REVISION | aws s3 cp - s3://$BUCKET_NAME/application/revision.json --content-type "application/json"
+        - printf '{"revision":"%s"}' $REVISION_ID | aws s3 cp - s3://$BUCKET_NAME/application/revision.json --content-type "application/json"
         - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/application/*"
   artifacts:
     baseDirectory: dist/
