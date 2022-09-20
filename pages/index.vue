@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>RevisionUp テストです</h2>
+    <h2>RevisionUp テストです - update</h2>
     <p>
       アプリケーションが保持しているリビジョンID:
       <span style="color: blue">{{ appRevisionId }}</span>
